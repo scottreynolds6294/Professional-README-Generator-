@@ -4,8 +4,6 @@ const fs = require('fs');
 
 // TODO: Create an array of questions for user input
 const questions = [
-inquirer
-    .prompt([
         {
             type: 'input',
             name: 'title',
@@ -62,7 +60,6 @@ inquirer
             name: 'features',
             message: 'Add features of your project'
         }
-    ])
 ];
 
 // TODO: Create a function to write README file
@@ -113,7 +110,7 @@ fs.writeFile(fileName, content, (err) => {
 function init() {
     inquirer.prompt(questions)
     .then((answers) => {
-        createAndWriteREADME('README.md', answers);
+        writeToFile('README.md', answers);
     });
 }
 
