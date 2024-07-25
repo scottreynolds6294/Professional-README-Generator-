@@ -72,8 +72,7 @@ ${data.installation}
 ## Usage
 ${data.usage}
 
-## License
-This project is licensed under the ${data.license} license.
+${renderLicenseSection(data.license)}
 
 ## Features
 ${data.features}
