@@ -51,7 +51,7 @@ const questions = [
         },
         {
             type: 'list',
-            name: 'liscense',
+            name: 'license',
             message: 'Choose a liscense for your project',
             choices: ['none', 'ISC', 'MIT']
         },
@@ -78,67 +78,10 @@ const questions = [
 
 ];
 
-function getLicenseBadge(license) {
-    switch (license) {
-        case 'ISC':
-            return 'https://img.shields.io/badge/license-ISC-blue';
-        case 'MIT':
-            return 'https://img.shields.io/badge/license-MIT-blue';
-        case 'none':
-            return '';
-        default:
-            return '';
-    }
-}
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-    const badgeUrl = getLicenseBadge(data.license);
-    const badgeMarkdown = badgeUrl ? `![License](${badgeUrl})` : '';
-    const content = 
- `#<${data.title}>
-
- ${badgeMarkdown}
-
-## Description
-${data.motivation}
-
-${data.purpose}
-
-${data.solve}
-
-${data.learn}
-
-## Table of Contents
--[Installation](#installation)
--[Usage](#usage)
--[License](#license)
--[Features](#features)
--[Contributing](#contributing)
--[Questions](#questions)
-
-## Installation
-${data.installation}
-
-## Usage
-${data.usage}
-
-## License
-This project is licensed under the ${data.license} license.
-
-## Features
-${data.features}
-
-## Contributing
-### Author: ${data['your-name']}
-### Other Contributors: ${data.credits}
-
-##Questions
-[${data['GitHub-username']}](https://github.com/${data['GitHub-username']})
-For additional questions please contact ${data['your-name']} at ${data.email}
-`;
-
-fs.writeFile(fileName, content, (err) => {
+fs.writeFile(fileName, data, (err) => {
     if (err) {
         console.error('Error writing file:', err);
     } else {
@@ -151,7 +94,8 @@ fs.writeFile(fileName, content, (err) => {
 function init() {
     inquirer.prompt(questions)
     .then((answers) => {
-        writeToFile('README.md', answers);
+        const markdownContent = generateMarkdown(answers);
+        writeToFile('README.md', markdownContent);
     });
 }
 
