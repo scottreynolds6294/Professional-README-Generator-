@@ -78,10 +78,27 @@ const questions = [
 
 ];
 
+function getLicenseBadge(license) {
+    switch (license) {
+        case 'ISC':
+            return 'https://img.shields.io/badge/license-ISC-blue';
+        case 'MIT':
+            return 'https://img.shields.io/badge/license-MIT-blue';
+        case 'none':
+            return '';
+        default:
+            return '';
+    }
+}
+
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
+    const badgeUrl = getLicenseBadge(data.license);
+    const badgeMarkdown = badgeUrl ? `![License](${badgeUrl})` : '';
     const content = 
  `#<${data.title}>
+
+ ${badgeMarkdown}
 
 ## Description
 ${data.motivation}
