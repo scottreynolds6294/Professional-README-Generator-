@@ -59,25 +59,46 @@ const questions = [
             type: 'input',
             name: 'features',
             message: 'Add features of your project'
+        },
+        {
+            type: 'input',
+            name: 'tests',
+            message: 'Add test insctructions.'
+        },
+        {
+            type: 'input',
+            name: 'GitHub-username',
+            message: 'Enter your GitHub username.'
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: 'Enter your email'
         }
+
 ];
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
     const content = 
- `# ${data.title}
+ `#<${data.title}>
 
 ## Description
 ${data.motivation}
 
-### Purpose
 ${data.purpose}
 
-### Problem Solved
 ${data.solve}
 
-### What I Learned
 ${data.learn}
+
+## Table of Contents
+-[Installation](#installation)
+-[Usage](#usage)
+-[License](#license)
+-[Features](#features)
+-[Contributing](#contributing)
+-[Questions](#questions)
 
 ## Installation
 ${data.installation}
@@ -85,17 +106,20 @@ ${data.installation}
 ## Usage
 ${data.usage}
 
-## Credits
-${data.credits}
-
 ## License
 This project is licensed under the ${data.license} license.
 
 ## Features
 ${data.features}
 
-## Author
-${data['your-name']}`;
+## Contributing
+### Author: ${data['your-name']}
+### Other Contributors: ${data.credits}
+
+##Questions
+[${data['GitHub-username']}](https://github.com/${data['GitHub-username']})
+For additional questions please contact ${data['your-name']} at ${data.email}
+`;
 
 fs.writeFile(fileName, content, (err) => {
     if (err) {
